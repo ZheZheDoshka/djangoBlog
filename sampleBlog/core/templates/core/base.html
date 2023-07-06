@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content ="width=device_width, initial-scale=1.0">
+    {% load i18n %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>{% block title %} {% endblock %}</title>
+
+</head>
+<body>
+{% block nav %}
+{% endblock %}
+
+    <div class="px-6 py-6">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>

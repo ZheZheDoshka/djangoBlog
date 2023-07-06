@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+
+{% block title %} {% trans 'Log In' %} {% endblock %}
+{% block body %}
+<form>
+    <div class="col d-flex justify-content-center">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header text-white bg-dark mb-3">
+                  {% trans 'Log In' %}
+            </div>
+            <div class="card-body">
+                <div class="form-outline mb-3">
+                    <label for="username">{% trans 'Username' %}</label>
+                    <input type="text"
+                           name="username"
+                           class="form-control"
+                           id="username">
+                </div>
+
+                <div class="form-outline mb-3">
+                    <label for="password">{% trans 'Password' %}</label>
+                    <input type="text"
+                           name="password"
+                           class="form-control"
+                           id="password">
+                </div>
+                <button type="submit" class="btn btn-dark">{% trans 'Log in' %}</button>
+                <div class="text-right">
+                    <a class="text-info" href="/registration">{% trans 'Sign up' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+{% endblock %}

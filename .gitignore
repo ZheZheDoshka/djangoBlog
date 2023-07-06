@@ -1,0 +1,16 @@
+HELP.md
+
+
+### venv ###
+venv/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+*/sqlite3.exe
