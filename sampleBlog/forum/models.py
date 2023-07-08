@@ -6,20 +6,21 @@ from core.models import User
 
 class Category(models.Model):
     slug = models.SlugField(unique=True)
-    category_name = models.CharField(max_length=255,)
-    category_description = models.CharField(max_length=255,)
+    category_name = models.CharField(max_length=255, default="")
+    category_description = models.CharField(max_length=255, default="")
 
 
 class SubCategory(models.Model):
     slug = models.SlugField(unique=True)
-    subcategory_name = models.CharField(max_length=255,)
-    subcategory_description = models.CharField(max_length=255, )
+    subcategory_name = models.CharField(max_length=255, default="")
+    subcategory_description = models.CharField(max_length=255, default="")
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE, null=True)
 
 
 class Topic(models.Model):
-    title = models.CharField(max_length=255,)
+    title = models.CharField(max_length=255, default="title")
+    text = models.CharField(max_length=5000, default="")
     subcategory = models.ForeignKey(SubCategory,
                                     on_delete=models.CASCADE, null=True)
     create_date = models.DateTimeField(auto_now_add=True)
@@ -38,8 +39,9 @@ class Topic(models.Model):
 
 
 class Post(models.Model):
-    text = models.CharField(max_length=5000,)
+    text = models.CharField(max_length=5000, default="")
     topic = models.ForeignKey(Topic,
                               on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE, null=True)
+    create_date = models.DateTimeField(auto_now_add=True)
