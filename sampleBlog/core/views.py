@@ -5,6 +5,7 @@ from django.views import View
 
 
 from core.forms import RegistrationForm, LoginForm
+from core.models import User
 
 
 def index(request):
@@ -22,8 +23,12 @@ class Registration(View):
         return render(request, self.template_name, context)
 
     def post(self, request):
-        # username = request.POST['username']
-        # password = request.POST['password1']
+        username = request.POST['username']
+        password = request.POST['password1']
+        email = request.POST['email']
+        user = User.objects.create_user(username, email, password)
+        user.role = User.UserRole.USER
+        user.save()
         return redirect("/")
 
 

@@ -21,24 +21,26 @@
                 <div class="form-outline mb-3">
                     <label for="email">{% trans 'Email' %}</label>
                     <input type="text"
-                           name="password"
+                           name="email"
                            class="form-control"
                            id="email">
                 </div>
                 <div class="form-outline mb-3">
                     <label for="password1">{% trans 'Password' %}</label>
                     <input type="text"
-                           name="password"
+                           name="password1"
                            class="form-control"
                            id="password1">
                 </div>
                 <div class="form-outline mb-3">
                     <label for="password2">{% trans 'Confirm password' %}</label>
                     <input type="text"
-                           name="password"
+                           name="password2"
                            class="form-control"
                            id="password2">
                 </div>
+
+                {% csrf_token %}
                 <button type="submit" class="btn btn-dark">{% trans 'Sign Up' %}</button>
             </div>
         </div>
