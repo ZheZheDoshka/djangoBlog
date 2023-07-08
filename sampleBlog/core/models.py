@@ -6,6 +6,7 @@ class User(AbstractUser):
     class UserRole(models.TextChoices):
         USER = "User"
         ADMIN = "Administrator"
+        MODERATOR = "Moderator"
     # username = models.CharField(max_length=32)
     # email = models.EmailField()
     # password = models.CharField(max_length=64)
