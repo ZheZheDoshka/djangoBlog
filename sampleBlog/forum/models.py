@@ -3,19 +3,29 @@ from django.db import models
 from core.models import User
 # Create your models here.
 
+POSTS_PER_PAGE = 10
+
 
 class Category(models.Model):
     slug = models.SlugField(unique=True)
     category_name = models.CharField(max_length=255, default="")
     category_description = models.CharField(max_length=255, default="")
+    category_position = models.IntegerField(default=10)
+
+    def __unicode__(self):
+        return self.category_name
 
 
 class SubCategory(models.Model):
     slug = models.SlugField(unique=True)
     subcategory_name = models.CharField(max_length=255, default="")
     subcategory_description = models.CharField(max_length=255, default="")
+    subcategory_position = models.IntegerField(default=10)
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE, null=True)
+
+    def __unicode__(self):
+        return self.subcategory_name
 
 
 class Topic(models.Model):
@@ -25,11 +35,15 @@ class Topic(models.Model):
                                     on_delete=models.CASCADE, null=True)
     create_date = models.DateTimeField(auto_now_add=True)
     last_update_date = models.DateTimeField(auto_now=True)
+    pinned = models.CharField(max_length=2, choices=(("T", "True"), ("F", "False")), default="F")
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE, null=True)
 
+    def __unicode__(self):
+        return self.title
+
     def get_post_number(self):
-        pass
+        return Post.objects.filter(topic__id=self.topic_id).count()
 
     def get_page(self):
         pass

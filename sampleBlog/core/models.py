@@ -16,3 +16,6 @@ class User(AbstractUser):
         choices=UserRole.choices,
         default=UserRole.USER
     )
+
+    def __unicode__(self):
+        return self.username
