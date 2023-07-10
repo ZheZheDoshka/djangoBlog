@@ -17,8 +17,12 @@ class SubCategoryForm(forms.ModelForm):
 
 
 class TopicForm(forms.ModelForm):
-    pass
+    class Meta:
+        model = Topic
+        fields = ('title', 'text')
 
 
 class PostForm(forms.ModelForm):
-    pass
+    class Meta:
+        model = Post
+        fields = ('text',)

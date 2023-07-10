@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    """Slightly redefined User model. Might be redundant."""
     class UserRole(models.TextChoices):
         USER = "User"
         ADMIN = "Administrator"

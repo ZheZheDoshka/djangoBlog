@@ -13,6 +13,7 @@ def index(request):
 
 
 class Registration(View):
+    """Registration form"""
     template_name = 'authentication/registration.html'
 
     def get(self, request):
@@ -33,6 +34,7 @@ class Registration(View):
 
 
 class Login(View):
+    """Login form"""
     template_name = 'authentication/login.html'
 
     def get(self, request):
@@ -55,5 +57,6 @@ class Login(View):
 
 @login_required(redirect_field_name="/login/")
 def logout_view(request):
+    """Logout action"""
     logout(request)
     return redirect("/login/")

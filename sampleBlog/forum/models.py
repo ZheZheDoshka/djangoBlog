@@ -46,10 +46,10 @@ class Topic(models.Model):
         return Post.objects.filter(topic__id=self.topic_id).count()
 
     def get_page(self):
-        pass
+        return self.get_post_number()/POSTS_PER_PAGE
 
     def get_url(self):
-        pass
+        return u'forum/%s/%s/%s?page=%s' % (self.category.slug, self.subcategory.slug, self.id, self.get_page())
 
 
 class Post(models.Model):

@@ -21,6 +21,7 @@ from core.views import index
 
 urlpatterns = [
     path('', include('core.urls')),
+    path('', include('forum.urls')),
     path('admin/', admin.site.urls),
 ]
 
