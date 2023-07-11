@@ -26,7 +26,7 @@ class CategoryView(View):
     def get(self, request, category):
         category = get_object_or_404(Category, slug=category)
         subcategories = list(SubCategory.objects.filter(category=category).order_by("subcategory_position"))
-        context = {'subcategories': subcategories}
+        context = {'subcategories': subcategories, 'category': category.category_name}
         return render(request, self.template_name, context)
 
     def post(self, request):
@@ -34,8 +34,15 @@ class CategoryView(View):
 
 
 class SubCategoryView(View):
-    def get(self, request):
-        pass
+    template_name = "forum/subcategory.html"
+
+    def get(self, request, category, subcategory):
+        category = get_object_or_404(Category, slug=category)
+        subcategory = get_object_or_404(SubCategory, slug=subcategory)
+        topics = list(Topic.objects.filter(subcategory=subcategory).order_by("subcategory_position"))
+        context = {'subcategory': subcategory, 'category': category.category_name,
+                   'topics': topics}
+        return render(request, self.template_name, context)
 
     def post(self, request):
         pass
