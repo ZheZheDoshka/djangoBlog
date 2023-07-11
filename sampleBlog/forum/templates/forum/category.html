@@ -3,7 +3,8 @@
 
 {% block title %} {{category}} {% endblock %}
 {% block body %}
-<table >
+<table  class="table table-dark">
+    <tbody>
     {% for sub in subcategories %}
     <tr>
         <td>
@@ -13,7 +14,7 @@
             <div>{{sub.subcategory_description}}</div>
         </td>
     </tr>
-
     {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

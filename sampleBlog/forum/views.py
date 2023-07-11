@@ -3,7 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views import View
 
+from core.models import User
 from forum.models import *
+from forum.forms import *
 
 # Create your views here.
 
@@ -37,11 +39,12 @@ class SubCategoryView(View):
     template_name = "forum/subcategory.html"
 
     def get(self, request, category, subcategory):
+        url = u'forum/%s/%s/new' % (category, subcategory)
         category = get_object_or_404(Category, slug=category)
         subcategory = get_object_or_404(SubCategory, slug=subcategory)
-        topics = list(Topic.objects.filter(subcategory=subcategory).order_by("subcategory_position"))
+        topics = list(Topic.objects.filter(subcategory=subcategory)) #.order_by("subcategory_position"))
         context = {'subcategory': subcategory, 'category': category.category_name,
-                   'topics': topics}
+                   'topics': topics, 'url': url}
         return render(request, self.template_name, context)
 
     def post(self, request):
@@ -54,3 +57,21 @@ class TopicView(View):
 
     def post(self, request):
         pass
+
+
+class NewTopic(View):
+    """Topic form"""
+    template_name = 'forum/create_topic.html'
+
+    def get(self, request, category, subcategory):
+        if request.user.is_authenticated:
+            form = TopicForm()
+            context = {'form': form, 'category': category, 'subcategory': subcategory}
+            return render(request, self.template_name, context)
+        return redirect("/forum/")
+
+    def post(self, request, category, subcategory):
+        title = request.POST['title']
+        text = request.POST['text']
+        user = User.objects.get(username=request.user.username)
+        topic = Topic().save()
