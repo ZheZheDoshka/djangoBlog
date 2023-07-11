@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views import View
@@ -21,8 +21,13 @@ class ForumView(View):
 
 
 class CategoryView(View):
-    def get(self, request):
-        pass
+    template_name = "forum/category.html"
+
+    def get(self, request, category):
+        category = get_object_or_404(Category, slug=category)
+        subcategories = list(SubCategory.objects.filter(category=category).order_by("subcategory_position"))
+        context = {'subcategories': subcategories}
+        return render(request, self.template_name, context)
 
     def post(self, request):
         pass
