@@ -73,5 +73,7 @@ class NewTopic(View):
     def post(self, request, category, subcategory):
         title = request.POST['title']
         text = request.POST['text']
+        subcategory_ = SubCategory.objects.get(slug=subcategory)
         user = User.objects.get(username=request.user.username)
-        topic = Topic().save()
+        Topic(title=title, text=text, subcategory=subcategory_, user=user).save()
+        return redirect(u'/forum/%s/%s' % (category, subcategory))
