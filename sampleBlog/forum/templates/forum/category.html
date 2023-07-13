@@ -9,11 +9,11 @@
     {% for sub in subcategories %}
     <tr>
         <td>
-            <a href="{{request.get_full_path}}{{subcategory.slug}}" class="link-light"><div>{{sub.subcategory_name}}</div></a>
+            <a href="{{request.get_full_path}}{{sub.slug}}" class="link-light"><div>{{sub.subcategory_name}}</div></a>
              <div>{{sub.subcategory_description}}</div>
         </td>
         <td>
-           
+
         </td>
     </tr>
     {% endfor %}
