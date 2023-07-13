@@ -3,18 +3,21 @@
 
 {% block title %} {% trans 'Forum' %} {% endblock %}
 {% block body %}
-<table  class="table table-dark">
+<div class="col d-flex justify-content-center">
+<table  class="table table-dark w-75">
     <tbody>
     {% for category in categories %}
     <tr>
         <td>
-            <div>{{category.category_name}}</div>
+        <div><a href="{{request.get_full_path}}{{category.slug}}" class="link-light">{{category.category_name}}</a></div>
+            <div>{{category.category_description}}</div>
         </td>
         <td>
-            <div>{{category.category_description}}</div>
+
         </td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+</div>
 {% endblock %}

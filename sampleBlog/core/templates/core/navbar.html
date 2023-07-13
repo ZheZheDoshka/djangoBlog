@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load i18n %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
-</body>
-</html>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a href="/forum" class="nav-link">{% trans 'Forum' %}</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a href="/logout" class="nav-link">{% trans 'Log Out' %}</a></li>
+            {% endif %}
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="true">{% trans 'Language' %}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="?lang=ua">UA</a></li>
+                        <li><a class="dropdown-item" href="?lang=ru">RU</a></li>
+                        <li> <a class="dropdown-item" href="?lang=en">EN</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+      </div>
+</nav>

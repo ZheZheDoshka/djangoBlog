@@ -3,12 +3,13 @@
 
 {% block title %} {{subcategory}} {% endblock %}
 {% block body %}
-<table  class="table table-dark">
+<div class="col d-flex justify-content-center">
+<table  class="table table-dark w-75">
     <tbody>
     {% for topic in topics %}
     <tr>
         <td>
-            <div>{{topic.title}}</div>
+            <a href="{{request.get_full_path}}{{topic.id}}" class="link-light"><div>{{topic.title}}</div></a>
         </td>
         <td>
 
@@ -17,7 +18,7 @@
     {% endfor %}
     </tbody>
 </table>
-
+</div>
 {% csrf_token %}
 <button type="button" class="btn btn-dark">
     <a href="/{{ url }}">

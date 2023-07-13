@@ -13,6 +13,7 @@ from forum.forms import *
 class ForumView(View):
     """Main forum page. Lists all categories."""
     template_name = "forum/forum.html"
+
     def get(self, request):
         categories = list(Category.objects.order_by("category_position"))
         context = {'categories': categories}
@@ -53,6 +54,7 @@ class SubCategoryView(View):
 
 class TopicView(View):
     template_name = "forum/topic.html"
+
     def get(self, request, category, subcategory, topic_id):
         url = u'forum/%s/%s/%s' % (category, subcategory, topic_id)
         topic = get_object_or_404(Topic, id = int(topic_id))
