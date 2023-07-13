@@ -56,13 +56,17 @@ class TopicView(View):
     def get(self, request, category, subcategory, topic_id):
         url = u'forum/%s/%s/%s' % (category, subcategory, topic_id)
         topic = get_object_or_404(Topic, id = int(topic_id))
-        posts = list(Post.objects.filter(topic=topic))
+        posts = list(Post.objects.filter(topic=topic)).orderby("create_date")
         context = {'topic': topic,
                    'posts': posts, 'url': url}
         return render(request, self.template_name, context)
 
-    def post(self, request):
-        pass
+    def post(self, request, category, subcategory, topic_id):
+        text = request.POST['text']
+        topic = get_object_or_404(Topic, id = int(topic_id))
+        user = User.objects.get(username=request.user.username)
+        Post(text=text, topic=topic, user=user).save()
+        return redirect(request.get_full_path())
 
 
 class NewTopic(View):
