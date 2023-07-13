@@ -16,13 +16,13 @@ Example project in Django. Very simple forum rather than blog, bad naming aside.
  - Possible rework of database
  - 
 ## Installation
-Clone this repository `git clone https://github.com/ZheZheDoshka/djangoBlog`
-Go to repository  `cd *path*djangoBlog\sampleBlog`
-If you don't have virtualenv, install it  `pip install virtualenv`
-Create new env `virtualenv venv`  
-Enter it `source venv/bin/activate` 
-Install requirement  `pip install -r requirements.txt` 
-From environment, run following:
-`manage.py makemigrations`
-`manage.py migrate`
-`manage.py runserver`
+ - Clone this repository `git clone https://github.com/ZheZheDoshka/djangoBlog`
+ - Go to repository  `cd *path*djangoBlog\sampleBlog`
+ - If you don't have virtualenv, install it  `pip install virtualenv`
+ - Create new env `virtualenv venv`  
+ - Enter it `source venv/bin/activate` 
+ - Install requirement  `pip install -r requirements.txt` 
+ - From environment, run following:
+ -  - `manage.py makemigrations`
+ -  - `manage.py migrate`
+ -  - `manage.py runserver`
