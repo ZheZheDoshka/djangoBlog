@@ -43,7 +43,7 @@ class Topic(models.Model):
         return self.title
 
     def get_post_number(self):
-        return Post.objects.filter(topic__id=self.topic_id).count()
+        return Post.objects.filter(id=self.id).count()
 
     def get_page(self):
         return self.get_post_number()/POSTS_PER_PAGE
