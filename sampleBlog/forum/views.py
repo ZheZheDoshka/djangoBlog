@@ -64,6 +64,10 @@ class TopicView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, category, subcategory, topic_id):
+        if request.POST["post_id"] != "none":
+            post_id = request.POST['post_id']
+            Post.objects.filter(id=post_id).delete()
+            return redirect(request.get_full_path())
         text = request.POST['text']
         topic = get_object_or_404(Topic, id = int(topic_id))
         user = User.objects.get(username=request.user.username)

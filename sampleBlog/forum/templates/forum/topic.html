@@ -21,9 +21,9 @@
             <div>{{topic.text}}</div>
         </td>
     </tr>
-    <tr style="background-color:black;">
-        <td colspan="2" style="background-color:black;">
 
+    <tr>
+        <td colspan="2">
         </td>
     </tr>
     {% for post in posts %}
@@ -33,6 +33,19 @@
         </td>
         <td>
             <div>{{post.text}}</div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            {% if request.user.username == post.user.username %}
+            <form action="" method="post", id="delete">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{post.id}}" />
+                <button type="submit" class="btn btn-dark btn-xs me-md">{% trans 'Delete' %}</button>
+            </form>
+            {% endif %}
+            </div>
         </td>
     </tr>
     {% endfor %}
@@ -47,7 +60,8 @@
                            name="text"
                            class="form-control"
                            id="text">
-                </div>
+            <input type="hidden" name="post_id" value="none" />
+        </div>
 
                 {% csrf_token %}
                 <button type="submit" class="btn btn-dark">{% trans 'Post' %}</button>
