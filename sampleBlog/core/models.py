@@ -17,6 +17,7 @@ class User(AbstractUser):
         choices=UserRole.choices,
         default=UserRole.USER
     )
+    blocked = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.username

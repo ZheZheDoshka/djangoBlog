@@ -11,10 +11,12 @@
     <title>{% block title %} {% endblock %}</title>
 
 </head>
-<body class ="bg-dark text-white">
+<body class ="text-white" style="background-color:black;">
 {% include 'core/navbar.html' %}
+<div class="container" style="height: 50px;">
 
-    <div class="px-6 py-6">
+</div>
+    <div class="container">
         {% block body %}
         {% endblock %}
     </div>

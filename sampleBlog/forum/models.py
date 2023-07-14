@@ -35,7 +35,8 @@ class Topic(models.Model):
                                     on_delete=models.CASCADE, null=True)
     create_date = models.DateTimeField(auto_now_add=True)
     last_update_date = models.DateTimeField(auto_now=True)
-    pinned = models.CharField(max_length=2, choices=(("T", "True"), ("F", "False")), default="F")
+    pinned = models.BooleanField(default=False)
+    closed = models.BooleanField(default=False)
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE, null=True)
 

@@ -4,27 +4,34 @@
 {% block title %} {{subcategory}} {% endblock %}
 {% block body %}
 <div class="col d-flex justify-content-center">
-<table  class="table table-dark w-75">
+<table  class="table table-striped table-dark w-75">
     <tbody>
     {% for topic in topics %}
     <tr>
         <td>
-            <a href="{{request.get_full_path}}{{topic.id}}" class="link-light"><div>{{topic.title}}</div></a>
+            <div><a href="{{request.get_full_path}}{{topic.id}}" class="link-light">{{topic.title}}</a> </div>
+            <div>{% trans 'By ' %}{{topic.user.username}}</div>
         </td>
         <td>
 
         </td>
     </tr>
     {% endfor %}
+    <tr>
+        <td>
+         <div>{% csrf_token %}
+             <button type="button" class="align-self-end btn btn-dark">
+                 <a href="/{{ url }}" class="link-light">{% trans 'Create Topic' %}</a>
+             </button>
+         </div>
+        </td>
+        <td>
+
+        </td>
+    </tr>
     </tbody>
 </table>
 
- <div>
-{% csrf_token %}
-<button type="button" class="btn btn-dark">
-    <a href="/{{ url }}">
-    {% trans 'Create Topic' %}</a>
-</button>
 </div>
-</div>
+
 {% endblock %}
