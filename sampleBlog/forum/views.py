@@ -58,7 +58,7 @@ class TopicView(View):
     def get(self, request, category, subcategory, topic_id):
         url = u'forum/%s/%s/%s' % (category, subcategory, topic_id)
         topic = get_object_or_404(Topic, id = int(topic_id))
-        posts = list(Post.objects.filter(topic=topic).order_by("create_date"))
+        posts = list(Post.objects.filter(topic=topic).order_by("creation_date"))
         context = {'topic': topic,
                    'posts': posts, 'url': url}
         return render(request, self.template_name, context)

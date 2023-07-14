@@ -33,7 +33,7 @@ class Topic(models.Model):
     text = models.CharField(max_length=5000, default="")
     subcategory = models.ForeignKey(SubCategory,
                                     on_delete=models.CASCADE, null=True)
-    create_date = models.DateTimeField(auto_now_add=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
     last_update_date = models.DateTimeField(auto_now=True)
     pinned = models.BooleanField(default=False)
     closed = models.BooleanField(default=False)
@@ -59,4 +59,4 @@ class Post(models.Model):
                               on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE, null=True)
-    create_date = models.DateTimeField(auto_now_add=True)
+    creation_date = models.DateTimeField(auto_now_add=True)

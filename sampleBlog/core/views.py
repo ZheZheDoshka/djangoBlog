@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views import View
@@ -6,7 +6,7 @@ from django.views import View
 
 from core.forms import RegistrationForm, LoginForm
 from core.models import User
-
+from userprofile.models import UserProfile
 
 def index(request):
     return render(request, 'core/index.html')
@@ -30,6 +30,9 @@ class Registration(View):
         user = User.objects.create_user(username, email, password)
         user.role = User.UserRole.USER
         user.save()
+        UserProfile(user=get_object_or_404(User, username=username), profile_name=username).save()
+        user = authenticate(request, username=username, password=password)
+        login(request, user)
         return redirect("/")
 
 
