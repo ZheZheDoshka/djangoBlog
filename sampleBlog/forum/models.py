@@ -1,3 +1,5 @@
+import math
+
 from django.db import models
 
 from core.models import User
@@ -44,7 +46,7 @@ class Topic(models.Model):
         return self.title
 
     def get_post_number(self):
-        return Post.objects.filter(id=self.id).count()
+        return Post.objects.filter(topic=self).count()
 
     def get_page(self):
         return int(self.get_post_number()/POSTS_PER_PAGE)
