@@ -53,15 +53,14 @@ class Login(View):
 
     def post(self, request):
         form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("/")
-        else:
-            return redirect("/login/")
+        #if form.is_valid():
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("/")
+        return redirect("/login/")
 
 
 @login_required(redirect_field_name="/login/")
