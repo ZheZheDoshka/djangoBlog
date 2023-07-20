@@ -39,6 +39,7 @@
         <td colspan="2">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             {% if request.user.username == post.user.username %}
+                <button type="button" class="btn btn-dark btn-xs ms-md">{% trans 'Profile' %}</button>
             <form action="" method="post", id="delete">
                 {% csrf_token %}
                 <input type="hidden" name="post_id" value="{{post.id}}" />
