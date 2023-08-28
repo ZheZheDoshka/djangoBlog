@@ -8,6 +8,7 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a href="/forum" class="nav-link">{% trans 'Forum' %}</a></li>
             {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'userprofile:user_profile' user.username %}" class="nav-link">{% trans 'Profile' %}</a></li>
             <li class="nav-item"><a href="/logout" class="nav-link">{% trans 'Log Out' %}</a></li>
             {% else %}
             <li class="nav-item"><a href="/login" class="nav-link">{% trans 'Log In' %}</a></li>
