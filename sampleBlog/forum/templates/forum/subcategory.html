@@ -13,7 +13,9 @@
             <div>{% trans 'By ' %}{{topic.user.username}}</div>
         </td>
         <td>
-
+            <div>{% trans 'Latest post:' %}</div>
+            <div><small>{{topic.get_last_post.creation_date}}</small></div>
+            <div><small>{% trans 'By ' %}{{topic.get_last_post.user.username}}</small></div>
         </td>
     </tr>
     {% endfor %}
