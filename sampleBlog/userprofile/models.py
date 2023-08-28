@@ -11,5 +11,5 @@ class UserProfile(models.Model):
                                 )
     profile_name = models.CharField(max_length=64, default="")
     description = models.CharField(max_length=255, default="")
-
-    # photo = models.ImageField(upload_to="images/user_profile/%s" % (user.username()), height_field=64, width_field=64, ) #default=)
+    photo = models.ImageField(upload_to="images/user_profile",
+                              default="images/user_profile/d1.png")

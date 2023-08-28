@@ -5,5 +5,8 @@
 {% block body %}
 <div class="container">
      {{profile.user.username}}
+     {{profile.photo.url}}
+     <img src="{{ profile.photo.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
 </div>
+
 {% endblock %}

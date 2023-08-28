@@ -14,4 +14,4 @@ class SubCategoryAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
-admin.site.register(Topic) #temporaty
+admin.site.register(Topic) #temp
