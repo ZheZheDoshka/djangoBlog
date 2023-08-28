@@ -32,14 +32,17 @@
             <div>{{post.user.username}}</div>
         </td>
         <td>
-            <div>{{post.text}}</div>
+            <div>{{post.text|linebreaksbr}}</div>
         </td>
     </tr>
     <tr>
         <td colspan="2">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-dark btn-xs ms-md">
+                    <a href="{% url 'userprofile:user_profile' post.user.username %}">{% trans 'Profile' %}</a>
+                </button>
+
             {% if request.user.username == post.user.username %}
-                <button type="button" class="btn btn-dark btn-xs ms-md">{% trans 'Profile' %}</button>
             <form action="" method="post", id="delete">
                 {% csrf_token %}
                 <input type="hidden" name="post_id" value="{{post.id}}" />
