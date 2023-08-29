@@ -4,7 +4,7 @@
 
 {% block title %} {{category}} {% endblock %}
 {% block extrascripts %}
-<script src="{% static 'static/showElement.js' %}">
+<script src="{% static 'showElement.js' %}">
 </script>
 {% endblock %}
 
@@ -13,13 +13,13 @@
             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                  <img src="{{ profile.photo.url }}" class="img-responsive" style="width: 120px"/>
                <h5>{{profile.user.username}}</h5>
-                    <button id="show-element-button" class="btn btn-dark">Change Photo</button>
+                    <button id="show-element-button" class="btn btn-dark" onclick="showElement()">Change Photo</button>
                         <div id="form-element" style="display: none;">
                             <form method="post" class="form-inline" >
                             {% csrf_token %}
                             {{ photo_form.as_p }}
                                 <button type="submit" name="photo-submit" class="btn btn-dark">Upload</button>
-                                <button type="button" id="hide-element-button" class="btn btn-dark">Cancel</button>
+                                <button type="button" id="hide-element-button" onclick="hideElement()" class="btn btn-dark">Cancel</button>
                             </form>
                         </div>
             </div>
