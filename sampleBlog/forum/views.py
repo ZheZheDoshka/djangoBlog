@@ -29,7 +29,8 @@ class CategoryView(View):
     def get(self, request, category):
         category = get_object_or_404(Category, slug=category)
         subcategories = list(SubCategory.objects.filter(category=category).order_by("subcategory_position"))
-        context = {'subcategories': subcategories, 'category': category.category_name}
+        # last_posts = [subcategories[i].get_last_post() for i in range(len(subcategories))]
+        context = {'subcategories': subcategories, 'category': category.category_name,} # 'last_posts': last_posts}
         return render(request, self.template_name, context)
 
     def post(self, request):

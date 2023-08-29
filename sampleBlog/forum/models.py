@@ -31,6 +31,23 @@ class SubCategory(models.Model):
     def __unicode__(self):
         return self.subcategory_name
 
+    def get_last_topic(self):
+        topics = Topic.objects.filter(subcategory=self).order_by('-last_update_date')
+        if topics:
+            return topics[0]
+        else:
+            return False
+
+    def get_last_post(self):
+        topic = self.get_last_topic()
+        if topic:
+            return topic.get_last_post()
+        else:
+            return False
+
+    def get_topic_number(self):
+        return Topic.objects.filter(subcategory=self).count()
+
 
 class Topic(models.Model):
     title = models.CharField(max_length=255, default="title")
@@ -57,9 +74,9 @@ class Topic(models.Model):
         return u'forum/%s/%s/%s?page=%s' % (self.subcategory.category.slug, self.subcategory.slug, self.id, self.get_page())
 
     def get_last_post(self):
-        post = Post.objects.filter(topic=self).order_by('-creation_date')
-        if post:
-            return post[0]
+        posts = Post.objects.filter(topic=self).order_by('-creation_date')
+        if posts:
+            return posts[0]
         else:
             return self
 

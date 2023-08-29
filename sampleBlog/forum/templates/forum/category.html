@@ -13,7 +13,12 @@
              <div>{{sub.subcategory_description}}</div>
         </td>
         <td>
-
+            <div>{% trans 'Last post:' %}</div>
+            {% if sub.get_topic_number != 0%}
+            <div><small>Re: {{sub.get_last_topic.title}}</small></div>
+            <div><small>{{sub.get_last_post.creation_date}}</small></div>
+            <div><small>{% trans 'By ' %}{{sub.get_last_post.user.username}}</small></div>
+            {% endif %}
         </td>
     </tr>
     {% endfor %}
