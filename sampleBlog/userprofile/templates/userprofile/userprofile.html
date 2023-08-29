@@ -1,15 +1,27 @@
 {% extends "core/base.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block title %} {{category}} {% endblock %}
+{% block extrascripts %}
+<script src="{% static 'static/showElement.js' %}">
+</script>
+{% endblock %}
+
 {% block body %}
         <div class="card" style="background-color: #000; height:200px;">
             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                  <img src="{{ profile.photo.url }}" class="img-responsive" style="width: 120px"/>
                <h5>{{profile.user.username}}</h5>
-              <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark">
-                Edit profile
-              </button>
+                    <button id="show-element-button" class="btn btn-dark">Change Photo</button>
+                        <div id="form-element" style="display: none;">
+                            <form method="post" class="form-inline" >
+                            {% csrf_token %}
+                            {{ photo_form.as_p }}
+                                <button type="submit" name="photo-submit" class="btn btn-dark">Upload</button>
+                                <button type="button" id="hide-element-button" class="btn btn-dark">Cancel</button>
+                            </form>
+                        </div>
             </div>
           </div>
           <div>
@@ -22,3 +34,5 @@
           </div>
         </div>
 {% endblock %}
+
+

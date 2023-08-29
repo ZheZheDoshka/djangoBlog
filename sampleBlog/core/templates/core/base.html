@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content ="width=device_width, initial-scale=1.0">
+    {% load static %}
     {% load i18n %}
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <title>{% block title %} {% endblock %}</title>
 
-
+    {% block extrascripts %}{% endblock %}
 </head>
 <body class ="text-white" style="background-color:black;">
 {% include 'core/navbar.html' %}
