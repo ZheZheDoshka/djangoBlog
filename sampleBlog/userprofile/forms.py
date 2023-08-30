@@ -4,10 +4,10 @@ from django import forms
 from userprofile.models import *
 
 
-class PhotoForm(forms.ModelForm):
+class PhotoForm(forms.Form):
     class Meta:
         model = UserProfile
-        fields = ('photo',)
+        fields = ('photo', )
 
 
 class DescriptionForm(forms.ModelForm):

@@ -81,7 +81,6 @@ class Topic(models.Model):
             return self
 
 
-
 class Post(models.Model):
     text = models.CharField(max_length=5000, default="")
     topic = models.ForeignKey(Topic,

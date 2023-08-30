@@ -9,19 +9,36 @@
 {% endblock %}
 
 {% block body %}
+
         <div class="card" style="background-color: #000; height:200px;">
             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                  <img src="{{ profile.photo.url }}" class="img-responsive" style="width: 120px"/>
                <h5>{{profile.user.username}}</h5>
-                    <button id="show-element-button" class="btn btn-dark" onclick="showElement()">Change Photo</button>
+
+                {% if request.user.username == profile.user.username %}
+                    <button id="show-element-button" class="btn btn-dark" onclick="showElement('form-element')">Change Photo</button>
                         <div id="form-element" style="display: none;">
                             <form method="post" class="form-inline" >
                             {% csrf_token %}
                             {{ photo_form.as_p }}
                                 <button type="submit" name="photo-submit" class="btn btn-dark">Upload</button>
-                                <button type="button" id="hide-element-button" onclick="hideElement()" class="btn btn-dark">Cancel</button>
+                                <button type="button" id="hide-element-button" onclick="hideElement('form-element')" class="btn btn-dark">Cancel</button>
                             </form>
                         </div>
+                {% endif %}
+            </div>
+            <h6>{{profile.description}}</h6>
+                {% if request.user.username == profile.user.username %}
+                    <button id="show-desc-button" class="btn btn-dark" onclick="showElement('form-desc')">Change Description</button>
+                        <div id="form-desc" style="display: none;">
+                            <form method="post" class="form-inline" >
+                            {% csrf_token %}
+                            {{description_form.as_p }}
+                                <button type="submit" name="description-submit" class="btn btn-dark">Edit</button>
+                                <button type="button" id="hide-desc-button" onclick="hideElement('form-desc')" class="btn btn-dark">Cancel</button>
+                            </form>
+                        </div>
+                {% endif %}
             </div>
           </div>
           <div>
