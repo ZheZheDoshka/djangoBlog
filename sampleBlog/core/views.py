@@ -8,6 +8,7 @@ from core.forms import RegistrationForm, LoginForm
 from core.models import User
 from userprofile.models import UserProfile
 
+
 def index(request):
     return render(request, 'core/index.html')
 
@@ -52,8 +53,8 @@ class Login(View):
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = LoginForm(request.POST)
-        #if form.is_valid():
+        # form = LoginForm(request.POST)
+        # if form.is_valid():
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)

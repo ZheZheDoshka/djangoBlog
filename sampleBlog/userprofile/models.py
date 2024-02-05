@@ -1,4 +1,4 @@
-import os
+# import os
 
 from django.db import models
 from core.models import User
@@ -23,7 +23,7 @@ class UserProfile(models.Model):
             self.photo = photo
             self.save()
             return
-        #if os.path.exists(old_photo):
+        # if os.path.exists(old_photo):
         #    os.remove(old_photo)
         self.photo = photo
         self.save()
@@ -31,4 +31,3 @@ class UserProfile(models.Model):
     def update_description(self, description):
         self.description = description
         self.save()
-

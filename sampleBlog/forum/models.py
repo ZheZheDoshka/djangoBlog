@@ -1,8 +1,8 @@
-import math
+# import math
 
 from django.db import models
 
-from datetime import date
+# from datetime import date
 
 from core.models import User
 # Create your models here.
@@ -71,7 +71,10 @@ class Topic(models.Model):
         return int(self.get_post_number()/POSTS_PER_PAGE)
 
     def get_url(self):
-        return u'forum/%s/%s/%s?page=%s' % (self.subcategory.category.slug, self.subcategory.slug, self.id, self.get_page())
+        return u'forum/%s/%s/%s?page=%s' % (self.subcategory.category.slug,
+                                            self.subcategory.slug,
+                                            self.id,
+                                            self.get_page())
 
     def get_last_post(self):
         posts = Post.objects.filter(topic=self).order_by('-creation_date')

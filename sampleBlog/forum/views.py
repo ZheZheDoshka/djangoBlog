@@ -30,7 +30,7 @@ class CategoryView(View):
         category = get_object_or_404(Category, slug=category)
         subcategories = list(SubCategory.objects.filter(category=category).order_by("subcategory_position"))
         # last_posts = [subcategories[i].get_last_post() for i in range(len(subcategories))]
-        context = {'subcategories': subcategories, 'category': category.category_name,} # 'last_posts': last_posts}
+        context = {'subcategories': subcategories, 'category': category.category_name, }  # 'last_posts': last_posts}
         return render(request, self.template_name, context)
 
     def post(self, request):
@@ -44,7 +44,7 @@ class SubCategoryView(View):
         url = u'forum/%s/%s/new' % (category, subcategory)
         category = get_object_or_404(Category, slug=category)
         subcategory = get_object_or_404(SubCategory, slug=subcategory)
-        topics = list(Topic.objects.filter(subcategory=subcategory)) #.order_by("subcategory_position"))
+        topics = list(Topic.objects.filter(subcategory=subcategory))  # .order_by("subcategory_position"))
         context = {'subcategory': subcategory, 'category': category.category_name,
                    'topics': topics, 'url': url}
         return render(request, self.template_name, context)
@@ -58,7 +58,7 @@ class TopicView(View):
 
     def get(self, request, category, subcategory, topic_id):
         url = u'forum/%s/%s/%s' % (category, subcategory, topic_id)
-        topic = get_object_or_404(Topic, id = int(topic_id))
+        topic = get_object_or_404(Topic, id=int(topic_id))
         posts = list(Post.objects.filter(topic=topic).order_by("creation_date"))
         context = {'topic': topic,
                    'posts': posts, 'url': url}
@@ -70,7 +70,7 @@ class TopicView(View):
             Post.objects.filter(id=post_id).delete()
             return redirect(request.get_full_path())
         text = request.POST['text']
-        topic = get_object_or_404(Topic, id = int(topic_id))
+        topic = get_object_or_404(Topic, id=int(topic_id))
         user = User.objects.get(username=request.user.username)
         Post(text=text, topic=topic, user=user).save()
         return redirect(request.get_full_path())

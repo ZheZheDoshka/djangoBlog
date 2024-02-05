@@ -18,7 +18,7 @@
                 {% if request.user.username == profile.user.username %}
                     <button id="show-element-button" class="btn btn-dark" onclick="showElement('form-element')">Change Photo</button>
                         <div id="form-element" style="display: none;">
-                            <form method="post" class="form-inline" >
+                            <form method="post" enctype="multipart/form-data" class="form-inline" >
                             {% csrf_token %}
                             {{ photo_form.as_p }}
                                 <button type="submit" name="photo-submit" class="btn btn-dark">Upload</button>

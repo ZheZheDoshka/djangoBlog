@@ -9,4 +9,4 @@ from userprofile.models import *
 
 
 # Register your models here.
-admin.site.register(UserProfile) #, UserProfileAdmin)
+admin.site.register(UserProfile)  # , UserProfileAdmin)
