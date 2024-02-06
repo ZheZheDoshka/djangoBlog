@@ -14,7 +14,7 @@ def index(request):
 
 
 class Registration(View):
-    """Registration form"""
+    """View for Registration form."""
     template_name = 'authentication/registration.html'
 
     def get(self, request):
@@ -42,7 +42,7 @@ class Registration(View):
 
 
 class Login(View):
-    """Login form"""
+    """View for Login form"""
     template_name = 'authentication/login.html'
 
     def get(self, request):

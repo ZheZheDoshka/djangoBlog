@@ -6,12 +6,15 @@ from django.core.files.storage import FileSystemStorage
 
 from userprofile.models import *
 from userprofile.forms import *
-# Create your views here.
+
+# Views for userprofile app
 
 
 class UserProfileView(View):
+    """
+    View for userprofile page that consists of user profile
+    """
     template_name = "userprofile/userprofile.html"
-
     def get(self, request, profile_name):
         profile = get_object_or_404(UserProfile, profile_name=profile_name)
         photo_form = PhotoForm()

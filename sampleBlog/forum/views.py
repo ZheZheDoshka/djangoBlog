@@ -7,11 +7,12 @@ from core.models import User
 from forum.models import *
 from forum.forms import *
 
-# Create your views here.
+
+# Views for forum app
 
 
 class ForumView(View):
-    """Main forum page. Lists all categories."""
+    """View for main forum page. Lists all categories."""
     template_name = "forum/forum.html"
 
     def get(self, request):
@@ -24,6 +25,7 @@ class ForumView(View):
 
 
 class CategoryView(View):
+    """View for category page. Lists all subcategories within category."""
     template_name = "forum/category.html"
 
     def get(self, request, category):
@@ -38,6 +40,7 @@ class CategoryView(View):
 
 
 class SubCategoryView(View):
+    """View for subcategory page. Lists all topics within subcategory."""
     template_name = "forum/subcategory.html"
 
     def get(self, request, category, subcategory):
@@ -54,6 +57,7 @@ class SubCategoryView(View):
 
 
 class TopicView(View):
+    """View for topic page. Lists all posts within topic."""
     template_name = "forum/topic.html"
 
     def get(self, request, category, subcategory, topic_id):
